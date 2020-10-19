@@ -62,8 +62,11 @@ public class GunScript : MonoBehaviour
 
     public void Reload()
     {
-        reloading = true;
-        Invoke("Reloaded", reload);
+        if (left < magSize && !reloading && reserveAmmo > 0)
+        {
+            reloading = true;
+            Invoke("Reloaded", reload);
+        }
     }
 
     public void Reloaded()
@@ -120,5 +123,9 @@ public class GunScript : MonoBehaviour
         reserveAmmo *= 2;
         gameObject.GetComponent<MeshRenderer>().material = papCamo;
 
+    }
+    public void ButtonFire()
+    {
+        shooting = true;
     }
 }

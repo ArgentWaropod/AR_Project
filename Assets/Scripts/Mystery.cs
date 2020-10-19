@@ -22,16 +22,7 @@ public class Mystery : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (active && man.points >= cost)
-            {
-                man.points -= cost;
-                canvas.gameObject.SetActive(false);
-                active = false;
-                ableToBuy = false;
-                Player playersGun = player.GetComponent<Player>();
-                playersGun.NewGun(SpinTheBox(playersGun));
-                Invoke("resetActive", 2);
-            }
+
         }
     }
 
@@ -56,4 +47,17 @@ public class Mystery : MonoBehaviour
     {
         ableToBuy = true;
     }    
+    public void PurchaseButton()
+    {
+        if (active && man.points >= cost)
+        {
+            man.points -= cost;
+            canvas.gameObject.SetActive(false);
+            active = false;
+            ableToBuy = false;
+            Player playersGun = player.GetComponent<Player>();
+            playersGun.NewGun(SpinTheBox(playersGun));
+            Invoke("resetActive", 2);
+        }
+    }
 }

@@ -57,4 +57,20 @@ public class Player : MonoBehaviour
             counterTwo = tracker;
         }
     }
+
+    public void Switch()
+    {
+        if (!weapon1Equiped && weapon1 != null)
+        {
+            weapon1.gameObject.SetActive(true);
+            weapon2.gameObject.SetActive(false);
+            weapon1Equiped = true;
+        }
+        if (weapon1Equiped && weapon2 != null)
+        {
+            weapon2.gameObject.SetActive(true);
+            weapon1.gameObject.SetActive(false);
+            weapon1Equiped = false;
+        }
+    }
 }

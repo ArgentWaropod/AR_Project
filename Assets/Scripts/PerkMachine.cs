@@ -28,14 +28,7 @@ public class PerkMachine : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            if (active && man.points >= cost)
-            {
-                man.points -= cost;
-                canvas.gameObject.SetActive(false);
-                active = false;
-                purchased = true;
-                OnPurchase(man);
-            }
+
         }
     }
 
@@ -58,5 +51,17 @@ public class PerkMachine : MonoBehaviour
     public virtual void OnPurchase(Manager thePlayer)
     {
 
+    }
+
+    public void PurchaseButton()
+    {
+        if (active && man.points >= cost)
+        {
+            man.points -= cost;
+            canvas.gameObject.SetActive(false);
+            active = false;
+            purchased = true;
+            OnPurchase(man);
+        }
     }
 }
