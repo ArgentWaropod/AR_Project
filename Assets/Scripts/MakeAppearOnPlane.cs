@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.AI;
 
 /// <summary>
 /// Moves the ARSessionOrigin in such a way that it makes the given content appear to be
@@ -13,6 +14,7 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class MakeAppearOnPlane : MonoBehaviour
 {
+    public ARPlaneManager Planegame;
     [SerializeField]
     [Tooltip("A transform which should be made to appear to be at the touch point.")]
     Transform m_Content;
@@ -78,4 +80,12 @@ public class MakeAppearOnPlane : MonoBehaviour
     ARSessionOrigin m_SessionOrigin;
 
     ARRaycastManager m_RaycastManager;
+
+    public void StartGame()
+    {
+        Planegame.detectionMode = PlaneDetectionMode.None;
+        Planegame.planePrefab.GetComponent<MeshRenderer>().enabled = false;
+        Planegame.planePrefab.GetComponent<NavMeshSurface>().BuildNavMesh();
+        this.enabled = false;
+    }
 }
