@@ -98,12 +98,12 @@ public class Zombie : MonoBehaviour
                     {
                         if (man.Round <= 5)
                         {
-                            agent.speed = 3.5f;
+                            agent.speed = 1f;
                             return ZStates.WALK;
                         }
                         else
                         {
-                            agent.speed = 7f;
+                            agent.speed = 3f;
                             return ZStates.RUN;
                         }
                     }
@@ -154,7 +154,7 @@ public class Zombie : MonoBehaviour
     {
         if (other.GetComponent<Manager>())
         {
-            other.GetComponent<Manager>().playerHealth -= damage;
+            other.GetComponent<Manager>().TakeDamage(damage);
         }
     }
 }

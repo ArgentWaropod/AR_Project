@@ -84,7 +84,6 @@ public class MakeAppearOnPlane : MonoBehaviour
     public void StartGame()
     {
         Planegame.detectionMode = PlaneDetectionMode.None;
-        Planegame.planePrefab.GetComponent<MeshRenderer>().enabled = false;
         Planegame.planePrefab.GetComponent<NavMeshSurface>().BuildNavMesh();
         this.enabled = false;
     }
