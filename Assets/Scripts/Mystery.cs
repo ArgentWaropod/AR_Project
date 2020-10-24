@@ -49,7 +49,7 @@ public class Mystery : MonoBehaviour
     }    
     public void PurchaseButton()
     {
-        if (active && man.points >= cost)
+        if (man.points >= cost)
         {
             man.points -= cost;
             canvas.gameObject.SetActive(false);

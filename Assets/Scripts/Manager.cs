@@ -15,7 +15,7 @@ public class Manager : MonoBehaviour
     public int MaxZombies; //How many zombies can there be max at one time
     public List<GameObject> spawnpoints;
     public GameObject spawnPrefab, spawnerPrefab, ded, playCanvas;
-    public int points = 500;
+    public int points = 5000;
     public TextMeshProUGUI scorecounter;
     public TextMeshProUGUI health;
     public TextMeshProUGUI round;
@@ -29,6 +29,7 @@ public class Manager : MonoBehaviour
         currentHealth = 2;
         roundStarting = false;
         GameOn = false;
+        playCanvas.SetActive(false);
         ded.SetActive(false);
     }
 
@@ -43,7 +44,7 @@ public class Manager : MonoBehaviour
             }
             scorecounter.text = points.ToString();
             health.text = currentHealth.ToString();
-            round.text = round.ToString();
+            round.text = Round.ToString();
             if (DeadZombies == ZombiesinRound && !roundStarting)
             {
                 roundStarting = true;
@@ -81,10 +82,6 @@ public class Manager : MonoBehaviour
     {
         playCanvas.SetActive(true);
         GameOn = true;
-        spawnpoints.Clear();
-        spawnpoints.Add(Instantiate(spawnerPrefab, transform.position, transform.rotation));
-        spawnpoints.Add(Instantiate(spawnerPrefab, transform.position, transform.rotation));
-        spawnpoints.Add(Instantiate(spawnerPrefab, transform.position, transform.rotation));
     }
 
     public void TakeDamage(int damage)

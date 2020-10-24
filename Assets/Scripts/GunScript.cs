@@ -29,35 +29,12 @@ public class GunScript : MonoBehaviour
 
     private void Update()
     {
-        if (allowButtonHold)
-        {
-            shooting = Input.GetKey(KeyCode.Mouse0);
-        }
-        else
-        {
-            shooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R) && left < magSize && !reloading && reserveAmmo > 0)
-        {
-            Reload();
-        }
-
         if (ready && shooting && !reloading && left > 0)
         {
             shot = bulletsPerTap;
             Shoot();
         }
         text.text = left + " / " + reserveAmmo;
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (!isPacked)
-            {
-                Debug.Log("PACK A PUNCH");
-                PackAPunch();
-                isPacked = true;
-            }
-        }
     }
 
     public void Reload()

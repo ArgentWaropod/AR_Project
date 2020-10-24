@@ -9,7 +9,7 @@ public class Zombie : MonoBehaviour
 {
     int health = 5;
     int damage = 1;
-    bool inAnimation, notstartedDie;
+    bool inAnimation, notstartedDie, walkSet, runSet;
     public ZStates currentState;
     public GameObject target;
     public Animator ani;
@@ -19,6 +19,8 @@ public class Zombie : MonoBehaviour
 
     private void Start()
     {
+        walkSet = false;
+        runSet = false;
         target = GameObject.FindGameObjectWithTag("Player");
         man = target.GetComponent<Manager>();
         currentState = ZStates.IDLE;
@@ -60,14 +62,19 @@ public class Zombie : MonoBehaviour
                 agent.SetDestination(target.transform.position);
                 if (currentState == ZStates.WALK)
                 {
-                    if (!ani.GetBool("IsWalking"))
+                    if (!walkSet)
                     {
                         ani.SetBool("IsWalking", true);
+                        walkSet = true;
                     }
                 }
                 else if (currentState == ZStates.RUN)
                 {
-                    ani.SetBool("IsWalking", true);
+                    if (!runSet)
+                    {
+                        ani.SetBool("IsRunning", true);
+                        runSet = true;
+                    }
                 }
             }
         }
@@ -90,7 +97,7 @@ public class Zombie : MonoBehaviour
                 }
                 else
                 {
-                    if (Vector3.Distance(gameObject.transform.position, target.transform.position) < 4.0f)
+                    if (Vector3.Distance(gameObject.transform.position, target.transform.position) < 8.0f)
                     {
                         return ZStates.ATTACK;
                     }
@@ -99,6 +106,7 @@ public class Zombie : MonoBehaviour
                         if (man.Round <= 5)
                         {
                             agent.speed = 1f;
+                            
                             return ZStates.WALK;
                         }
                         else
@@ -141,6 +149,8 @@ public class Zombie : MonoBehaviour
     {
         ani.SetBool("IsWalking", false);
         ani.SetBool("IsRunning", false);
+        walkSet = false;
+        runSet = false;
     }
 
     public void TakeDamage(int damage)

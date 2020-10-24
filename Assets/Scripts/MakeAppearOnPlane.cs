@@ -14,7 +14,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(ARRaycastManager))]
 public class MakeAppearOnPlane : MonoBehaviour
 {
-    public ARPlaneManager Planegame;
     [SerializeField]
     [Tooltip("A transform which should be made to appear to be at the touch point.")]
     Transform m_Content;
@@ -83,8 +82,8 @@ public class MakeAppearOnPlane : MonoBehaviour
 
     public void StartGame()
     {
+        ARPlaneManager Planegame = gameObject.GetComponent<ARPlaneManager>();
         Planegame.detectionMode = PlaneDetectionMode.None;
-        Planegame.planePrefab.GetComponent<NavMeshSurface>().BuildNavMesh();
         this.enabled = false;
     }
 }

@@ -73,4 +73,28 @@ public class Player : MonoBehaviour
             weapon1Equiped = false;
         }
     }
+
+    public void Reload()
+    {
+        if (weapon1Equiped)
+        {
+            weapon1.GetComponent<GunScript>().ButtonFire();
+        }
+        else
+        {
+            weapon2.GetComponent<GunScript>().ButtonFire();
+        }
+    }
+
+    public void RealReload()
+    {
+        if (weapon1Equiped)
+        {
+            weapon1.GetComponent<GunScript>().Reload();
+        }
+        else
+        {
+            weapon2.GetComponent<GunScript>().Reload();
+        }
+    }
 }
